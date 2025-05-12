@@ -38,20 +38,24 @@ class _ChatView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal:10),
         child: Column(
           children: [
-            Expanded(child:ListView.builder(
-              itemCount: chatProvider.messageList.length,
-              itemBuilder: (context, index) {
-                //Instancia que sabra de quien es el mensaje
-                final message= chatProvider.messageList[index];
-                //Si es el residuo es 0, es de ella, si no es cero es mio
-                //return ( index % 2 ==0 )
-                return(message.fromWho == FromWho.him)
-                ?  HerMessageBubble()
-                : MyMessageBubble(message: message);
+            Expanded(
+              child:ListView.builder(
+                controller: chatProvider.chatScrollControler,
+                itemCount: chatProvider.messageList.length,
+                itemBuilder: (context, index) {
+                  //Instancia que sabra de quien es el mensaje
+                  final message= chatProvider.messageList[index];
+                  //Si es el residuo es 0, es de ella, si no es cero es mio
+                  //return ( index % 2 ==0 )
+                  return(message.fromWho == FromWho.him)
+                  ?  HerMessageBubble()
+                  : MyMessageBubble(message: message);
 
             })),
-            //Caja de textp
-            const MessageFieldBox(),
+            //Caja de texto
+            MessageFieldBox(
+              onValue: chatProvider.sendMessage,
+            ),
           ],
         ),
       ),
