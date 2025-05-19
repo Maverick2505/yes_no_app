@@ -48,7 +48,7 @@ class _ChatView extends StatelessWidget {
                   //Si es el residuo es 0, es de ella, si no es cero es mio
                   //return ( index % 2 ==0 )
                   return(message.fromWho == FromWho.him)
-                  ?  HerMessageBubble()
+                  ? HerMessageBubble(message: message,)
                   : MyMessageBubble(message: message);
 
             })),
