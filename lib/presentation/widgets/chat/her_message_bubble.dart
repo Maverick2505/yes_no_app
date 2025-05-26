@@ -3,7 +3,8 @@ import 'package:yes_no_app/domain/entities/messages.dart';
 
 class HerMessageBubble extends StatelessWidget {
   final Message message;
-  const HerMessageBubble({super.key, required this.message});
+  DateTime ahora = DateTime.now();
+  HerMessageBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +17,14 @@ class HerMessageBubble extends StatelessWidget {
               color: colors.secondary, borderRadius: BorderRadius.circular(20)),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            child: Text(
-              message.text,
-              style: const TextStyle(color: Colors.white),
+            child: Column(
+              children: [
+                Text(
+                  message.text,
+                  style: const TextStyle(color: Colors.white),
+                ),
+                Text("${ahora.hour}:${ahora.minute}")
+              ],
             ),
           ),
         ),
